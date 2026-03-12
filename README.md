@@ -1,6 +1,6 @@
 <div align="center">
 
-# 💬 CHAT MEGA AXNEN
+# 💬 CHAT EMPRESA
 ### Sistema Interno de Comunicação Empresarial
 
 ![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4?style=for-the-badge&logo=php&logoColor=white)
