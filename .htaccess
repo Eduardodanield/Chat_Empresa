@@ -1,0 +1,33 @@
+# ══════════════════════════════════════════════════════
+#  SEGURANÇA — chat_megaaxnen
+# ══════════════════════════════════════════════════════
+
+Options -Indexes
+
+# ── Bloqueia acesso direto a arquivos sensíveis ────────
+<FilesMatch "(config\.php|conexao\.php|\.env|\.git|composer\.(json|lock))$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ── Bloqueia acesso às pastas de banco e configuração ──
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Impede acesso direto à pasta "banco de dados"
+    RewriteRule ^banco\ de\ dados/  - [F,L]
+    RewriteRule ^bancodedados       - [F,L]
+    RewriteRule ^\.git/             - [F,L]
+</IfModule>
+
+# ── Headers de segurança (complemento ao PHP) ──────────
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# ── Oculta versão do servidor ──────────────────────────
+ServerSignature Off
